@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { hot } from 'react-hot-loader';
 import AppRouter from './routes';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -16,4 +17,4 @@ const Root = ({ store, history }) => {
   );
 };
 
-export default Root;
+export default hot(module)(Root);

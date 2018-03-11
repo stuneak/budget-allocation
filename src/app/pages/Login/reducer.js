@@ -1,16 +1,25 @@
 import { createReducer } from 'redux-act';
-import { signIn } from './actions';
+import { signInSuccess, signInFailure } from './actions';
 
 export const initialState = {
   username: '',
-  token: ''
+  token: '',
+  isAuthenticated: false,
+  errorMessage: ''
 };
 
 export const reducer = createReducer(on => {
-  on(signIn, (state, payload) => ({
+  on(signInSuccess, (state, { username, token }) => ({
     ...state,
-    username: payload.username,
-    token: payload.token
+    username: username,
+    token: token,
+    isAuthenticated: true,
+    errorMessage: ''
+  }));
+  on(signInFailure, (state, error) => ({
+    ...state,
+    errorMessage: error,
+    isAuthenticated: false
   }));
 }, initialState);
 

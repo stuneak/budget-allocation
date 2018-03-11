@@ -3,21 +3,20 @@ import { Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 const Home = Loadable({
-  loader: () => import('./pages/Home'),
+  loader: () => import('pages/Home'),
   loading () {
     return <div>Loading...</div>;
   }
 });
 
 const Login = Loadable({
-  loader: () => import('./pages/Login'),
+  loader: () => import('pages/Login'),
   loading () {
     return <div>Loading...</div>;
   }
 });
 
 const AppRouter = ({ ...props }) => {
-  console.log(props);
   return (
     <Router {...props}>
       <Switch>
