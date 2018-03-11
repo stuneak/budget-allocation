@@ -10,15 +10,20 @@ export default resource({
         username: username,
         password: password
       });
-      newUser.save(err => {
-        if (err) {
-          return res.json({
+      newUser
+        .save()
+        .then(() =>
+          res.send({
+            success: true,
+            msg: 'Successful created new user.'
+          })
+        )
+        .catch(error =>
+          res.status(400).send({
             success: false,
             msg: 'Username already exists.'
-          });
-        }
-        res.json({ success: true, msg: 'Successful created new user.' });
-      });
+          })
+        );
     }
   }
 });
