@@ -25,9 +25,6 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(passport.initialize());
-app.get('/', function (req, res) {
-  res.send('Page not found.');
-});
 app.use('/api', routes);
 app.listen(port);
 console.log('server listening port: ', port);
