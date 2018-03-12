@@ -1,5 +1,10 @@
 import { createReducer } from 'redux-act';
-import { signInSuccess, signInFailure } from './actions';
+import {
+  signInSuccess,
+  signInFailure,
+  signUpSuccess,
+  signUpFailure
+} from './actions';
 
 export const initialState = {
   username: '',
@@ -18,8 +23,24 @@ export const reducer = createReducer(on => {
   }));
   on(signInFailure, (state, error) => ({
     ...state,
-    errorMessage: error,
-    isAuthenticated: false
+    username: '',
+    token: '',
+    isAuthenticated: false,
+    errorMessage: error
+  }));
+  on(signUpSuccess, (state, { username, token }) => ({
+    ...state,
+    username: username,
+    token: token,
+    isAuthenticated: true,
+    errorMessage: ''
+  }));
+  on(signUpFailure, (state, error) => ({
+    ...state,
+    username: '',
+    token: '',
+    isAuthenticated: false,
+    errorMessage: error
   }));
 }, initialState);
 

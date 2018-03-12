@@ -14,3 +14,16 @@ export const signInSuccess = createAction(
   })
 );
 export const signInFailure = createAction(`${NS}signInFailure`, err => err);
+
+export const signUp = createAction(`${NS}signUp`, ({ username, password }) => ({
+  username,
+  password
+}));
+export const signUpSuccess = createAction(
+  `${NS}signUpSuccess`,
+  ({ username, token }) => ({
+    username,
+    token
+  })
+);
+export const signUpFailure = createAction(`${NS}signUpFailure`, err => err);

@@ -15,7 +15,7 @@ export default ({ config }) =>
           }
           result.comparePassword(password, (err, isMatch) => {
             if (isMatch && !err) {
-              var token = jwt.sign(result.toJSON(), config.secret, {
+              const token = jwt.sign(result.toJSON(), config.secret, {
                 expiresIn: '2 days'
               });
               return res.json({
