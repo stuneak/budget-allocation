@@ -18,14 +18,22 @@ class Login extends React.Component {
     },
     activeTab: 'signin'
   };
-  saveUserData = ({ target }) => {
-    const name = target.name;
-    const value = target.value;
+  saveUserData = ({ target: { name, value } }) => {
     const state = { ...this.state.userData, [name]: value };
     this.setState({
       userData: state
     });
   };
+  componentWillMount () {
+    if (this.props.isAuthenticated) {
+      this.props.history.push('/home');
+    }
+  }
+  componentWillUpdate (nextProps) {
+    if (nextProps.isAuthenticated) {
+      this.props.history.push('/home');
+    }
+  }
   handleSubmit = (event, type) => {
     event.preventDefault();
     if (type === 'signin') {
@@ -72,7 +80,7 @@ class Login extends React.Component {
               onChange={this.saveUserData}
             />
             <FormInput
-              type="text"
+              type="password"
               placeholder="Password"
               name="password"
               onChange={this.saveUserData}
@@ -91,7 +99,7 @@ class Login extends React.Component {
             />
             <FormInput
               onChange={this.saveUserData}
-              type="text"
+              type="password"
               placeholder="Password"
               name="password"
             />
@@ -103,7 +111,7 @@ class Login extends React.Component {
   }
 }
 function mapStateToProps (state) {
-  return { todos: state.login };
+  return { isAuthenticated: state.login.isAuthenticated };
 }
 
 export default connect(mapStateToProps, { signIn, signUp })(Login);

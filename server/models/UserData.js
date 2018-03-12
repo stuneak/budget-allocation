@@ -8,7 +8,7 @@ const UserDataSchema = new Schema({
     required: true,
     default: null
   },
-  categoris: {
+  categories: {
     type: Array
   },
   shoppingList: {

@@ -8,16 +8,16 @@ export const LoginLayout = styled.div`
   height: 100vh;
   background: rgba(19, 35, 47, 0.9);
 `;
-
 export const Form = styled.form`
   display: ${({ active }) => (active ? 'flex' : 'none')};
   flex-direction: column;
-  padding: 30px;
+  padding: 40px 30px;
 `;
 export const FormWrap = styled.div`
   background: rgba(19, 35, 47, 0.9);
 `;
 export const FormInput = styled.input`
+  width: 300px;
   box-sizing: border-box;
   color: inherit;
   font-family: inherit;
@@ -34,7 +34,6 @@ export const FormInput = styled.input`
 export const Tabs = styled.div`
   display: flex;
 `;
-
 export const TabsLink = styled.a`
   padding: 15px 0px 15px;
   flex: 1;

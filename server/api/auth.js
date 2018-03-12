@@ -1,6 +1,6 @@
 import resource from 'resource-router-middleware';
 import jwt from 'jsonwebtoken';
-import UserModel from '../models/User';
+import UserModel from '../models/Users';
 
 export default ({ config }) =>
   resource({
@@ -18,7 +18,7 @@ export default ({ config }) =>
               const token = jwt.sign(result.toJSON(), config.secret, {
                 expiresIn: '2 days'
               });
-              return res.status(400).send({
+              return res.send({
                 success: true,
                 message: 'Authentication successfull',
                 token

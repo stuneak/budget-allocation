@@ -1,15 +1,18 @@
 import { createReducer } from 'redux-act';
-import { getUserInfo } from './actions';
+import { saveUserData } from './actions';
 
 export const initialState = {
-  budget: 0,
+  budget: null,
   shoppingList: [],
-  shoppingCategories: []
+  categories: []
 };
 
 export const reducer = createReducer(on => {
-  on(getUserInfo, (state, payload) => ({
-    ...state
+  on(saveUserData, (state, { budget, shoppingList, categories }) => ({
+    ...state,
+    budget,
+    shoppingList,
+    categories
   }));
 }, initialState);
 

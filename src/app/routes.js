@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import RequireAuth from './HOC/Authentication';
 
 const Home = Loadable({
   loader: () => import('pages/Home'),
@@ -21,7 +22,7 @@ const AppRouter = ({ ...props }) => {
     <Router {...props}>
       <Switch>
         <Route exact path="/login" component={Login} />
-        <Route path="/home" component={Home} />
+        <Route path="/home" component={RequireAuth(Home)} />
         <Redirect from="*" to="/login" />
       </Switch>
     </Router>

@@ -3,7 +3,8 @@ import {
   signInSuccess,
   signInFailure,
   signUpSuccess,
-  signUpFailure
+  signUpFailure,
+  logout
 } from './actions';
 
 export const initialState = {
@@ -16,8 +17,8 @@ export const initialState = {
 export const reducer = createReducer(on => {
   on(signInSuccess, (state, { username, token }) => ({
     ...state,
-    username: username,
-    token: token,
+    username,
+    token,
     isAuthenticated: true,
     errorMessage: ''
   }));
@@ -30,8 +31,8 @@ export const reducer = createReducer(on => {
   }));
   on(signUpSuccess, (state, { username, token }) => ({
     ...state,
-    username: username,
-    token: token,
+    username,
+    token,
     isAuthenticated: true,
     errorMessage: ''
   }));
@@ -41,6 +42,13 @@ export const reducer = createReducer(on => {
     token: '',
     isAuthenticated: false,
     errorMessage: error
+  }));
+  on(logout, state => ({
+    ...state,
+    username: '',
+    token: '',
+    isAuthenticated: false,
+    errorMessage: ''
   }));
 }, initialState);
 

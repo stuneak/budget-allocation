@@ -27,3 +27,5 @@ export const signUpSuccess = createAction(
   })
 );
 export const signUpFailure = createAction(`${NS}signUpFailure`, err => err);
+
+export const logout = createAction(`${NS}logout`);
