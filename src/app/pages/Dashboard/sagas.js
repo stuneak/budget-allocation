@@ -13,6 +13,6 @@ function * getData () {
   }
 }
 
-export default function * watchHome () {
+export default function * watchDashboard () {
   yield all([takeEvery(requestForGetUserData, getData)]);
 }

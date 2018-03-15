@@ -10,8 +10,7 @@ import {
 export const initialState = {
   username: '',
   token: '',
-  isAuthenticated: false,
-  errorMessage: ''
+  isAuthenticated: false
 };
 
 export const reducer = createReducer(on => {
@@ -19,36 +18,30 @@ export const reducer = createReducer(on => {
     ...state,
     username,
     token,
-    isAuthenticated: true,
-    errorMessage: ''
+    isAuthenticated: true
   }));
   on(signInFailure, (state, error) => ({
     ...state,
     username: '',
     token: '',
-    isAuthenticated: false,
-    errorMessage: error
+    isAuthenticated: false
   }));
   on(signUpSuccess, (state, { username, token }) => ({
     ...state,
     username,
     token,
-    isAuthenticated: true,
-    errorMessage: ''
+    isAuthenticated: true
   }));
   on(signUpFailure, (state, error) => ({
     ...state,
     username: '',
     token: '',
-    isAuthenticated: false,
-    errorMessage: error
+    isAuthenticated: false
   }));
   on(logout, state => ({
     ...state,
-    username: '',
     token: '',
-    isAuthenticated: false,
-    errorMessage: ''
+    isAuthenticated: false
   }));
 }, initialState);
 

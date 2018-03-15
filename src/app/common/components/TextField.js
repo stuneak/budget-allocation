@@ -9,15 +9,18 @@ const FormInput = styled.input`
   color: inherit;
   font-family: inherit;
   padding: ${toRem(12)} ${toRem(12)} ${toRem(10)} ${toRem(12)};
-  border: none;
+  border: 1px solid transparent;
   outline: 0;
   display: inline-block;
   margin: 0 0 ${toRem(12)} 0;
+  &:focus {
+    border-color: #1890ff;
+  }
   ${({ type }) =>
     type === 'submit' &&
     `margin-top: ${toRem(
       12
-    )} ;cursor: pointer; color: white; background: #1fb5bf; border: 1px solid #1ba0a9;`};
+    )} ;cursor: pointer; color: white; background: #1890ff; border: 1px solid #1890ff;`};
 `;
 
 export const TextField = onlyUpdateForKeys(['value'])(

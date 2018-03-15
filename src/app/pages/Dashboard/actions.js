@@ -1,6 +1,6 @@
 import { createAction } from 'redux-act';
 
-const NS = '@@HOME/';
+const NS = '@@Dashboard/';
 
 export const requestForGetUserData = createAction(`${NS}requestForGetUserData`);
 

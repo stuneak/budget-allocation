@@ -3,8 +3,8 @@ import { Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import RequireAuth from './HOC/Authentication';
 
-const Home = Loadable({
-  loader: () => import('pages/Home'),
+const Dashboard = Loadable({
+  loader: () => import('pages/Dashboard'),
   loading () {
     return <div>Loading...</div>;
   }
@@ -22,7 +22,7 @@ const AppRouter = ({ ...props }) => {
     <Router {...props}>
       <Switch>
         <Route exact path="/login" component={Login} />
-        <Route path="/home" component={RequireAuth(Home)} />
+        <Route path="/dashboard" component={RequireAuth(Dashboard)} />
         <Redirect from="*" to="/login" />
       </Switch>
     </Router>

@@ -13,7 +13,7 @@ export const signInSuccess = createAction(
     token
   })
 );
-export const signInFailure = createAction(`${NS}signInFailure`, err => err);
+export const signInFailure = createAction(`${NS}signInFailure`);
 
 export const signUp = createAction(`${NS}signUp`, ({ username, password }) => ({
   username,
@@ -26,6 +26,6 @@ export const signUpSuccess = createAction(
     token
   })
 );
-export const signUpFailure = createAction(`${NS}signUpFailure`, err => err);
+export const signUpFailure = createAction(`${NS}signUpFailure`);
 
 export const logout = createAction(`${NS}logout`);

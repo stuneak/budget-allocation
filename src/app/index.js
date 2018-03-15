@@ -6,8 +6,9 @@ import Root from './Root';
 import jwtDecode from 'jwt-decode';
 import 'utils/styles/defaultStyle';
 import { signInSuccess } from 'pages/Login/actions';
-import { requestForGetUserData } from 'pages/Home/actions';
+import { requestForGetUserData } from 'pages/Dashboard/actions';
 import { setHeaderToken } from 'api';
+import 'antd/dist/antd.css';
 const root = document.createElement('div');
 document.body.appendChild(root);
 
@@ -26,7 +27,7 @@ const onBeforeLift = () => {
         signInSuccess({ token: token, username: decoded.username })
       );
       store.dispatch(requestForGetUserData());
-      history.push('/home');
+      history.push('/dashboard');
     }
   }
 };

@@ -7,8 +7,9 @@ import {
   signUpSuccess,
   signUpFailure
 } from './actions';
-import { requestForGetUserData } from 'pages/Home/actions';
+import { requestForGetUserData } from 'pages/Dashboard/actions';
 import { axios, setHeaderToken } from 'api';
+import { message } from 'antd';
 
 function * Authorization ({ payload: { username, password } }) {
   const userData = {
@@ -24,8 +25,8 @@ function * Authorization ({ payload: { username, password } }) {
       signInSuccess({ token: response.data.token, username: username })
     );
   } catch (error) {
-    alert(error.response.data.message);
-    yield put(signInFailure(error.response.data.message));
+    message.error(error.response.data.message);
+    yield put(signInFailure());
   }
 }
 
@@ -44,8 +45,8 @@ function * Registration ({ payload: { username, password } }) {
     yield call(setHeaderToken, response.data.token);
     yield put(requestForGetUserData());
   } catch (error) {
-    alert(error.response.data.message);
-    yield put(signUpFailure(error.response.data.message));
+    message.error(error.response.data.message);
+    yield put(signUpFailure());
   }
 }
 

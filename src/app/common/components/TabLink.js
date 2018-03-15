@@ -9,10 +9,13 @@ const Link = styled.a`
   width: 100%;
   height: 100%;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
+  &:hover {
+    color: white;
+  }
   ${({ active }) =>
-    active ? 'background: #1fb5bf; color: white;' : 'color: #1fb5bf;'};
+    active ? 'background: #1890ff; color: white;' : 'color: #1890ff;'};
 `;
 
 export const TabLink = onlyUpdateForKeys(['active'])(

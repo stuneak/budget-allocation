@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import home from 'pages/Home/reducer';
+import dashboard from 'pages/Dashboard/reducer';
 import login from 'pages/Login/reducer';
 import { routerReducer as routing } from 'react-router-redux';
 import { persistReducer } from 'redux-persist';
@@ -12,8 +12,8 @@ const loginConfig = {
 };
 export const rootReducer = combineReducers({
   routing,
-  home,
+  dashboard,
   login: persistReducer(loginConfig, login)
 });
-
+// TODO: add full reset the app state when the user logs off
 export default rootReducer;

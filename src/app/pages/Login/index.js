@@ -20,12 +20,12 @@ class Login extends React.Component {
   };
   componentWillMount () {
     if (this.props.isAuthenticated) {
-      this.props.history.push('/home');
+      this.props.history.push('/dashboard');
     }
   }
   componentWillUpdate (nextProps) {
     if (nextProps.isAuthenticated) {
-      this.props.history.push('/home');
+      this.props.history.push('/dashboard');
     }
   }
   handleSubmit = (event, type) => {
@@ -37,7 +37,6 @@ class Login extends React.Component {
     }
   };
   changeTab = tab => {
-    console.log('ok');
     const state = { username: '', password: '' };
     this.setState({
       activeTab: tab,

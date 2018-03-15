@@ -2,7 +2,7 @@ import { createReducer } from 'redux-act';
 import { saveUserData } from './actions';
 
 export const initialState = {
-  budget: null,
+  budget: 0,
   shoppingList: [],
   categories: []
 };
