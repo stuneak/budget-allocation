@@ -1,13 +1,12 @@
 import styledNormalize from 'styled-normalize';
 import { injectGlobal } from 'styled-components';
-export const rem = 16;
-export const toRem = px => `${px / rem}rem`;
+import { defaultRem } from './general';
 injectGlobal`
 ${styledNormalize}
   html {
     height: 100%;
     width: 100%;
-    font-size: ${rem}px;
+    font-size: ${defaultRem}px;
   }
   body {
     width: 100%;

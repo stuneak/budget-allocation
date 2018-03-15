@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
 import { persistStore } from 'redux-persist';
 import rootReducer from './rootReducer';
-import rootSagas from './rootSagas.js';
+import rootSagas from './rootSagas';
 
 const history = createBrowserHistory();
 const reduxRouter = routerMiddleware(history);

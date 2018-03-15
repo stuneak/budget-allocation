@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signIn, signUp } from './actions';
-import {
-  LoginLayout,
-  Tabs,
-  TabsLink,
-  Form,
-  FormInput,
-  FormWrap
-} from './styles';
+import { LoginLayout, Tabs, Form, FormWrap } from './styles';
+import { TextField, TabLink } from 'common/components';
 
 class Login extends React.Component {
   state = {
@@ -43,6 +37,7 @@ class Login extends React.Component {
     }
   };
   changeTab = tab => {
+    console.log('ok');
     const state = { username: '', password: '' };
     this.setState({
       activeTab: tab,
@@ -50,60 +45,67 @@ class Login extends React.Component {
     });
   };
   render () {
+    const { activeTab, userData: { username, password } } = this.state;
     return (
       <LoginLayout>
         <FormWrap>
           <Tabs>
-            <TabsLink
-              onClick={() => this.changeTab('signin')}
-              active={this.state.activeTab === 'signin'}
+            <TabLink
+              onClick={this.changeTab}
+              active={activeTab}
+              tabName="signin"
               href="#"
             >
               Sign In
-            </TabsLink>
-            <TabsLink
-              onClick={() => this.changeTab('signup')}
-              active={this.state.activeTab === 'signup'}
+            </TabLink>
+            <TabLink
+              onClick={this.changeTab}
+              active={activeTab}
+              tabName="signup"
               href="#"
             >
               Sign Up
-            </TabsLink>
+            </TabLink>
           </Tabs>
           <Form
-            active={this.state.activeTab === 'signin'}
+            active={activeTab === 'signin'}
             onSubmit={event => this.handleSubmit(event, 'signin')}
           >
-            <FormInput
+            <TextField
               type="text"
               placeholder="Username"
               name="username"
               onChange={this.saveUserData}
+              value={username}
             />
-            <FormInput
+            <TextField
               type="password"
               placeholder="Password"
               name="password"
               onChange={this.saveUserData}
+              value={password}
             />
-            <FormInput type="submit" value="SIGN IN" />
+            <TextField type="submit" value="SIGN IN" />
           </Form>
           <Form
-            active={this.state.activeTab === 'signup'}
+            active={activeTab === 'signup'}
             onSubmit={event => this.handleSubmit(event, 'signup')}
           >
-            <FormInput
+            <TextField
               onChange={this.saveUserData}
               type="text"
               placeholder="Username"
               name="username"
+              value={username}
             />
-            <FormInput
+            <TextField
               onChange={this.saveUserData}
               type="password"
               placeholder="Password"
               name="password"
+              value={password}
             />
-            <FormInput type="submit" value="SIGN UP" />
+            <TextField type="submit" value="SIGN UP" />
           </Form>
         </FormWrap>
       </LoginLayout>

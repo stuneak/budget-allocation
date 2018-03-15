@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createBrowserHistory } from 'history';
-import configureStore from './common/configureStore.js';
-import Root from './Root.js';
+import configureStore from 'common/configureStore';
+import Root from './Root';
 import jwtDecode from 'jwt-decode';
-import 'styles/general.js';
+import 'utils/styles/defaultStyle';
 import { signInSuccess } from 'pages/Login/actions';
 import { requestForGetUserData } from 'pages/Home/actions';
 import { setHeaderToken } from 'api';
