@@ -8,7 +8,7 @@ import storage from 'redux-persist/lib/storage';
 const loginConfig = {
   storage,
   key: 'login',
-  blacklist: ['username', 'isAuthenticated', 'errorMessage']
+  blacklist: ['username', 'isAuthenticated']
 };
 export const rootReducer = combineReducers({
   routing,

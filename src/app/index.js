@@ -9,6 +9,7 @@ import { signInSuccess } from 'pages/Login/actions';
 import { requestForGetUserData } from 'pages/Dashboard/actions';
 import { setHeaderToken } from 'api';
 import 'antd/dist/antd.css';
+
 const root = document.createElement('div');
 document.body.appendChild(root);
 

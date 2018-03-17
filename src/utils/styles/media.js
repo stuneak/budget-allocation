@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 import { defaultRem } from './general';
+
 const sizes = {
   giant: 1170,
   desktop: 992,
