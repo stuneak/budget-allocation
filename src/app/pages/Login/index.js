@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { signIn, signUp } from './actions';
 import { LoginLayout, Tabs, Form, FormWrap } from './styles';
@@ -49,14 +50,27 @@ class Login extends React.Component {
       <LoginLayout>
         <FormWrap>
           <Tabs>
-            <TabLink onClick={this.changeTab} active={activeTab} tabName="signin" href="#">
+            <TabLink
+              onClick={this.changeTab}
+              active={activeTab}
+              tabName="signin"
+              href="#"
+            >
               Sign In
             </TabLink>
-            <TabLink onClick={this.changeTab} active={activeTab} tabName="signup" href="#">
+            <TabLink
+              onClick={this.changeTab}
+              active={activeTab}
+              tabName="signup"
+              href="#"
+            >
               Sign Up
             </TabLink>
           </Tabs>
-          <Form active={activeTab === 'signin'} onSubmit={event => this.handleSubmit(event, 'signin')}>
+          <Form
+            active={activeTab === 'signin'}
+            onSubmit={event => this.handleSubmit(event, 'signin')}
+          >
             <TextField
               type="text"
               placeholder="Username"
@@ -73,7 +87,10 @@ class Login extends React.Component {
             />
             <TextField type="submit" value="SIGN IN" />
           </Form>
-          <Form active={activeTab === 'signup'} onSubmit={event => this.handleSubmit(event, 'signup')}>
+          <Form
+            active={activeTab === 'signup'}
+            onSubmit={event => this.handleSubmit(event, 'signup')}
+          >
             <TextField
               onChange={this.saveUserData}
               type="text"
@@ -95,6 +112,14 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  history: PropTypes.array,
+  signIn: PropTypes.func,
+  signUp: PropTypes.func
+};
+
 function mapStateToProps (state) {
   return { isAuthenticated: state.login.isAuthenticated };
 }

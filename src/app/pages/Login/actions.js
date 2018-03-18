@@ -6,20 +6,26 @@ export const signIn = createAction(`${NS}signIn`, ({ username, password }) => ({
   username,
   password
 }));
-export const signInSuccess = createAction(`${NS}signInSuccess`, ({ username, token }) => ({
-  username,
-  token
-}));
+export const signInSuccess = createAction(
+  `${NS}signInSuccess`,
+  ({ username, token }) => ({
+    username,
+    token
+  })
+);
 export const signInFailure = createAction(`${NS}signInFailure`);
 
 export const signUp = createAction(`${NS}signUp`, ({ username, password }) => ({
   username,
   password
 }));
-export const signUpSuccess = createAction(`${NS}signUpSuccess`, ({ username, token }) => ({
-  username,
-  token
-}));
+export const signUpSuccess = createAction(
+  `${NS}signUpSuccess`,
+  ({ username, token }) => ({
+    username,
+    token
+  })
+);
 export const signUpFailure = createAction(`${NS}signUpFailure`);
 
 export const logout = createAction(`${NS}logout`);

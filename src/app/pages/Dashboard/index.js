@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from 'pages/Login/actions';
 import { StyledLayout } from './styles';
@@ -9,7 +10,11 @@ const { Content } = Layout;
 
 class Dashboard extends React.Component {
   render () {
-    const { userData: { budget, shoppingList, categories }, logout, username } = this.props;
+    const {
+      userData: { budget, shoppingList, categories },
+      logout,
+      username
+    } = this.props;
 
     const renderShoppingList = shoppingList.map((item, idx) => (
       <li key={idx}>
@@ -19,7 +24,9 @@ class Dashboard extends React.Component {
       </li>
     ));
 
-    const renderCategories = categories.map((item, idx) => <li key={idx}>name: {item}</li>);
+    const renderCategories = categories.map((item, idx) => (
+      <li key={idx}>name: {item}</li>
+    ));
 
     return (
       <StyledLayout>
@@ -38,6 +45,12 @@ class Dashboard extends React.Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  userData: PropTypes.object,
+  logout: PropTypes.func,
+  username: PropTypes.string
+};
 
 function mapStateToProps (state) {
   return { userData: state.dashboard, username: state.login.username };
