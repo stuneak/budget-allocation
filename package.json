@@ -1,5 +1,5 @@
 {
-  "name": "reactapp",
+  "name": "budget-allocation",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,8 @@
       "nodemon -w ./server/index.js --exec \"babel-node ./server/index.js --presets @babel/preset-env,@babel/preset-stage-0\"",
     "dev:app": "webpack-dev-server --env.development --config ./webpack/webpack.config.js",
     "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run dev:app\"",
-    "build:server": "babel server -s -D -d build/backend --presets @babel/preset-env,@babel/preset-stage-0",
+    "build:server":
+      "babel server -s -D -d build/backend --presets @babel/preset-env,@babel/preset-stage-0",
     "build:app": "webpack --env.production --config ./webpack/webpack.config.js",
     "build": "rm -rf ./build && npm run build:server && npm run build:app",
     "start:server": "node ./build/backend"
@@ -95,6 +96,6 @@
     "trailingComma": "all",
     "bracketSpacing": true,
     "jsxBracketSameLine": false,
-    "printWidth": 120
+    "printWidth": 100
   }
 }

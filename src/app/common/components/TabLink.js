@@ -17,10 +17,12 @@ const Link = styled.a`
   ${({ active }) => (active ? 'background: #1890ff; color: white;' : 'color: #1890ff;')};
 `;
 
-export const TabLink = onlyUpdateForKeys(['active'])(({ active, onClick, href, children, tabName }) => {
-  return (
-    <Link onClick={() => onClick(tabName)} active={active === tabName} href={href}>
-      {children}
-    </Link>
-  );
-});
+export const TabLink = onlyUpdateForKeys(['active'])(
+  ({ active, onClick, href, children, tabName }) => {
+    return (
+      <Link onClick={() => onClick(tabName)} active={active === tabName} href={href}>
+        {children}
+      </Link>
+    );
+  }
+);

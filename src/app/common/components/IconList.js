@@ -7,6 +7,6 @@ export const IconList = styled.span`
   justify-content: space-around;
   font-size: ${({ size }) => (size ? `${toRem(size)}` : `${toRem(16)}`)};
   & > i {
-    margin-left: ${({ direction }) => (direction === 'row' ? `${toRem(5)}` : '')};
+    margin-left: ${({ direction }) => direction === 'row' && `${toRem(5)}`};
   }
 `;

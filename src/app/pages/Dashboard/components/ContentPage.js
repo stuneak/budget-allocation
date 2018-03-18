@@ -43,7 +43,7 @@ class ContentPage extends React.Component {
           <Col span={12}>
             <HeaderForList>
               <span>
-                Shopping list
+                Shopping
                 <Badge
                   count={shoppingList.length}
                   overflowCount={999}
