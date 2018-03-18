@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { hot } from 'react-hot-loader';
@@ -18,6 +19,13 @@ const Root = ({ store, history, persistor, onBeforeLift }) => {
       </Provider>
     </ErrorBoundary>
   );
+};
+
+Root.propTypes = {
+  store: PropTypes.object,
+  history: PropTypes.object,
+  persistor: PropTypes.object,
+  onBeforeLift: PropTypes.func
 };
 
 export default hot(module)(Root);

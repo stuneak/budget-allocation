@@ -8,3 +8,9 @@ export const StyledP = styled.p`
   color: ${({ color }) => (color ? `${color}` : 'white')};
   font-size: ${({ size }) => (size ? `${toRem(size)}` : `${toRem(16)}`)};
 `;
+
+export const StyledUl = styled.ul`
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+`;

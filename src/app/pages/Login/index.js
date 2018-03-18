@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { signIn, signUp } from './actions';
 import { LoginLayout, Tabs, Form, FormWrap } from './styles';
-import { TextField, TabLink } from 'common/components';
+import { StyledInput, TabLink } from 'common/components';
 
 class Login extends React.Component {
   state = {
@@ -50,62 +50,46 @@ class Login extends React.Component {
       <LoginLayout>
         <FormWrap>
           <Tabs>
-            <TabLink
-              onClick={this.changeTab}
-              active={activeTab}
-              tabName="signin"
-              href="#"
-            >
+            <TabLink onClick={this.changeTab} active={activeTab} tabName="signin" href="#">
               Sign In
             </TabLink>
-            <TabLink
-              onClick={this.changeTab}
-              active={activeTab}
-              tabName="signup"
-              href="#"
-            >
+            <TabLink onClick={this.changeTab} active={activeTab} tabName="signup" href="#">
               Sign Up
             </TabLink>
           </Tabs>
-          <Form
-            active={activeTab === 'signin'}
-            onSubmit={event => this.handleSubmit(event, 'signin')}
-          >
-            <TextField
+          <Form active={activeTab === 'signin'} onSubmit={event => this.handleSubmit(event, 'signin')}>
+            <StyledInput
               type="text"
               placeholder="Username"
               name="username"
               onChange={this.saveUserData}
               value={username}
             />
-            <TextField
+            <StyledInput
               type="password"
               placeholder="Password"
               name="password"
               onChange={this.saveUserData}
               value={password}
             />
-            <TextField type="submit" value="SIGN IN" />
+            <StyledInput type="submit" value="SIGN IN" />
           </Form>
-          <Form
-            active={activeTab === 'signup'}
-            onSubmit={event => this.handleSubmit(event, 'signup')}
-          >
-            <TextField
+          <Form active={activeTab === 'signup'} onSubmit={event => this.handleSubmit(event, 'signup')}>
+            <StyledInput
               onChange={this.saveUserData}
               type="text"
               placeholder="Username"
               name="username"
               value={username}
             />
-            <TextField
+            <StyledInput
               onChange={this.saveUserData}
               type="password"
               placeholder="Password"
               name="password"
               value={password}
             />
-            <TextField type="submit" value="SIGN UP" />
+            <StyledInput type="submit" value="SIGN UP" />
           </Form>
         </FormWrap>
       </LoginLayout>
@@ -115,7 +99,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   isAuthenticated: PropTypes.bool,
-  history: PropTypes.array,
+  history: PropTypes.object,
   signIn: PropTypes.func,
   signUp: PropTypes.func
 };

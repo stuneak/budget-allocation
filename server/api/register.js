@@ -33,12 +33,19 @@ export default ({ config }) =>
               token
             });
           })
-          .catch(error =>
-            res.status(400).send({
-              success: false,
-              message: error
-            })
-          );
+          .catch(error => {
+            if (error.code === 11000) {
+              res.status(400).send({
+                success: false,
+                message: 'Account with such login already exists'
+              });
+            } else {
+              res.status(400).send({
+                success: false,
+                message: error
+              });
+            }
+          });
       }
     }
   });

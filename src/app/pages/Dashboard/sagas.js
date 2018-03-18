@@ -7,7 +7,7 @@ function * getData () {
     const response = yield call(axios.get, '/api/userdata');
     const { budget, shoppingList, categories } = response.data;
 
-    yield put(saveUserData({ budget, shoppingList, categories }));
+    yield put(saveUserData({ budget: +budget, shoppingList, categories }));
   } catch (error) {
     alert(error.response.data.message);
   }

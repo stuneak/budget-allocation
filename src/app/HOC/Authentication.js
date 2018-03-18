@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 export default function (ComposedComponent) {
-  class Authentication extends Component {
+  class Authentication extends React.Component {
     componentWillMount () {
       if (!this.props.isAuthenticated) {
         this.props.history.push('/login');
@@ -17,6 +18,11 @@ export default function (ComposedComponent) {
       return <ComposedComponent {...this.props} />;
     }
   }
+
+  Authentication.propTypes = {
+    isAuthenticated: PropTypes.bool,
+    history: PropTypes.object
+  };
 
   function mapStateToProps (state) {
     return { isAuthenticated: state.login.isAuthenticated };
