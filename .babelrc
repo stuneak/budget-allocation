@@ -11,13 +11,7 @@
     "@babel/preset-stage-0",
     "@babel/preset-react"
   ],
-  "plugins": [
-    "styled-name",
-    [
-      "import",
-      { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }
-    ]
-  ],
+  "plugins": ["styled-name", ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]],
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]

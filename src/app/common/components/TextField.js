@@ -18,21 +18,9 @@ const FormInput = styled.input`
   }
   ${({ type }) =>
     type === 'submit' &&
-    `margin-top: ${toRem(
-      12
-    )} ;cursor: pointer; color: white; background: #1890ff; border: 1px solid #1890ff;`};
+    `margin-top: ${toRem(12)} ;cursor: pointer; color: white; background: #1890ff; border: 1px solid #1890ff;`};
 `;
 
-export const TextField = onlyUpdateForKeys(['value'])(
-  ({ value, name, type, onChange, placeholder }) => {
-    return (
-      <FormInput
-        value={value}
-        name={name}
-        type={type}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
-    );
-  }
-);
+export const TextField = onlyUpdateForKeys(['value'])(({ value, name, type, onChange, placeholder }) => {
+  return <FormInput value={value} name={name} type={type} onChange={onChange} placeholder={placeholder} />;
+});

@@ -8,7 +8,6 @@ import 'utils/styles/defaultStyle';
 import { signInSuccess } from 'pages/Login/actions';
 import { requestForGetUserData } from 'pages/Dashboard/actions';
 import { setHeaderToken } from 'api';
-import 'antd/dist/antd.css';
 
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -24,21 +23,11 @@ const onBeforeLift = () => {
     const isTokenNotExpired = decoded.exp < new Date().getTime();
     if (isTokenNotExpired) {
       setHeaderToken(token);
-      store.dispatch(
-        signInSuccess({ token: token, username: decoded.username })
-      );
+      store.dispatch(signInSuccess({ token: token, username: decoded.username }));
       store.dispatch(requestForGetUserData());
       history.push('/dashboard');
     }
   }
 };
 
-render(
-  <Root
-    store={store}
-    history={history}
-    persistor={persistor}
-    onBeforeLift={onBeforeLift}
-  />,
-  root
-);
+render(<Root store={store} history={history} persistor={persistor} onBeforeLift={onBeforeLift} />, root);

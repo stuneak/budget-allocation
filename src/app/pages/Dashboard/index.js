@@ -4,15 +4,12 @@ import { logout } from 'pages/Login/actions';
 import { StyledLayout } from './styles';
 import { Layout } from 'antd';
 import { SiderBar } from './components';
+
 const { Content } = Layout;
 
 class Dashboard extends React.Component {
   render () {
-    const {
-      userData: { budget, shoppingList, categories },
-      logout,
-      username
-    } = this.props;
+    const { userData: { budget, shoppingList, categories }, logout, username } = this.props;
 
     const renderShoppingList = shoppingList.map((item, idx) => (
       <li key={idx}>
@@ -22,9 +19,7 @@ class Dashboard extends React.Component {
       </li>
     ));
 
-    const renderCategories = categories.map((item, idx) => (
-      <li key={idx}>name: {item}</li>
-    ));
+    const renderCategories = categories.map((item, idx) => <li key={idx}>name: {item}</li>);
 
     return (
       <StyledLayout>

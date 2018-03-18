@@ -17,7 +17,11 @@ Frontend: `npm run dev:app` (port:3000)
 
 Backend: `npm run dev:server` (port:3001)
 
-To run the application: `npm run dev` to launch HMR (port:3000)
+To run the app: `npm run dev` to launch HMR (port:3000)
+
+### Production:
+
+To build app: `npm run build`
 
 ### Features
 

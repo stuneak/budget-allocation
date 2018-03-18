@@ -10,8 +10,10 @@ module.exports = env => ({
   entry: entry(env),
   target: 'web',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../build/frontend'),
+    publicPath: '',
+    chunkFilename: '[name].js',
+    filename: '[name].js'
   },
   module: {
     rules: [rules.js, rules.css(env), rules.images]
@@ -24,32 +26,28 @@ module.exports = env => ({
             comments: false
           },
           compress: {
-            unsafe_comps: true,
-            properties: true,
-            keep_fargs: false,
-            pure_getters: true,
-            collapse_vars: true,
-            unsafe: true,
-            warnings: false,
-            screw_ie8: true,
-            sequences: true,
             dead_code: true,
             drop_debugger: true,
             comparisons: true,
-            conditionals: true,
-            evaluate: true,
-            booleans: true,
-            loops: true,
             unused: true,
-            hoist_funs: true,
-            if_return: true,
-            join_vars: true,
-            cascade: true,
             drop_console: true
           }
         }
       })
-    ]
+    ],
+    runtimeChunk: {
+      name: 'manifest'
+    },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          priority: -20,
+          chunks: 'all'
+        }
+      }
+    }
   },
   resolve: {
     modules: ['node_modules', 'src'],

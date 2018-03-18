@@ -1,11 +1,5 @@
 import { createReducer } from 'redux-act';
-import {
-  signInSuccess,
-  signInFailure,
-  signUpSuccess,
-  signUpFailure,
-  logout
-} from './actions';
+import { signInSuccess, signInFailure, signUpSuccess, signUpFailure, logout } from './actions';
 
 export const initialState = {
   username: '',

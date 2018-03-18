@@ -3,11 +3,14 @@ const aliases = require('./aliases');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 module.exports = env => {
   const devPlugins = [
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin()
   ];
   const prodPlugins = [
     new webpack.LoaderOptionsPlugin({
@@ -28,7 +31,21 @@ module.exports = env => {
     new webpack.EnvironmentPlugin({
       NODE_ENV: env.production ? 'production' : 'development'
     }),
-    new HtmlWebpackPlugin({ title: 'Budget allocation' }),
+    new WebappWebpackPlugin({
+      logo: aliases.favicon,
+      prefix: 'assets-[hash]/',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Budget allocation',
+      minify: {
+        removeComments: true,
+        sortAttributes: true,
+        useShortDoctype: true,
+        collapseWhitespace: true,
+        conservativeCollapse: true
+      }
+    }),
     new ExtractTextPlugin('styles.css')
   ];
   return [...mandatoryplugins, ...(env.development ? devPlugins : prodPlugins)];

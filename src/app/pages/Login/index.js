@@ -49,27 +49,14 @@ class Login extends React.Component {
       <LoginLayout>
         <FormWrap>
           <Tabs>
-            <TabLink
-              onClick={this.changeTab}
-              active={activeTab}
-              tabName="signin"
-              href="#"
-            >
+            <TabLink onClick={this.changeTab} active={activeTab} tabName="signin" href="#">
               Sign In
             </TabLink>
-            <TabLink
-              onClick={this.changeTab}
-              active={activeTab}
-              tabName="signup"
-              href="#"
-            >
+            <TabLink onClick={this.changeTab} active={activeTab} tabName="signup" href="#">
               Sign Up
             </TabLink>
           </Tabs>
-          <Form
-            active={activeTab === 'signin'}
-            onSubmit={event => this.handleSubmit(event, 'signin')}
-          >
+          <Form active={activeTab === 'signin'} onSubmit={event => this.handleSubmit(event, 'signin')}>
             <TextField
               type="text"
               placeholder="Username"
@@ -86,10 +73,7 @@ class Login extends React.Component {
             />
             <TextField type="submit" value="SIGN IN" />
           </Form>
-          <Form
-            active={activeTab === 'signup'}
-            onSubmit={event => this.handleSubmit(event, 'signup')}
-          >
+          <Form active={activeTab === 'signup'} onSubmit={event => this.handleSubmit(event, 'signup')}>
             <TextField
               onChange={this.saveUserData}
               type="text"
