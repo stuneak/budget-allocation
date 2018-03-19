@@ -6,12 +6,12 @@ export default function (ComposedComponent) {
   class Authentication extends React.Component {
     componentWillMount () {
       if (!this.props.isAuthenticated) {
-        this.props.history.push('/login');
+        this.props.history.push('login');
       }
     }
     componentWillUpdate (nextProps) {
       if (!nextProps.isAuthenticated) {
-        this.props.history.push('/login');
+        this.props.history.push('login');
       }
     }
     render () {

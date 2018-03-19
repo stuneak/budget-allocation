@@ -12,9 +12,11 @@ const reduxRouter = routerMiddleware(history);
 const sagaMiddleware = createSagaMiddleware();
 
 function configureStoreProd (initialState) {
-  const store = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware, reduxRouter));
+  const middlewares = [sagaMiddleware, reduxRouter];
+  const store = createStore(rootReducer, initialState, applyMiddleware(...middlewares));
   sagaMiddleware.run(rootSagas);
-  return store;
+  const persistor = persistStore(store);
+  return { store, persistor };
 }
 
 function configureStoreDev (initialState) {
@@ -26,12 +28,17 @@ function configureStoreDev (initialState) {
     })
   ];
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)));
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(...middlewares))
+  );
   sagaMiddleware.run(rootSagas);
   const persistor = persistStore(store);
   return { store, persistor };
 }
 
-const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
+const configureStore =
+  process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
 
 export default configureStore;

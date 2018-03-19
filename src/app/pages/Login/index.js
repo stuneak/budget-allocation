@@ -21,12 +21,12 @@ class Login extends React.Component {
   };
   componentWillMount () {
     if (this.props.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('dashboard');
     }
   }
   componentWillUpdate (nextProps) {
     if (nextProps.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('dashboard');
     }
   }
   handleSubmit = (event, type) => {
@@ -57,7 +57,10 @@ class Login extends React.Component {
               Sign Up
             </TabLink>
           </Tabs>
-          <Form active={activeTab === 'signin'} onSubmit={event => this.handleSubmit(event, 'signin')}>
+          <Form
+            active={activeTab === 'signin'}
+            onSubmit={event => this.handleSubmit(event, 'signin')}
+          >
             <StyledInput
               type="text"
               placeholder="Username"
@@ -74,7 +77,10 @@ class Login extends React.Component {
             />
             <StyledInput type="submit" value="SIGN IN" />
           </Form>
-          <Form active={activeTab === 'signup'} onSubmit={event => this.handleSubmit(event, 'signup')}>
+          <Form
+            active={activeTab === 'signup'}
+            onSubmit={event => this.handleSubmit(event, 'signup')}
+          >
             <StyledInput
               onChange={this.saveUserData}
               type="text"

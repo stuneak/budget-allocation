@@ -25,9 +25,12 @@ const onBeforeLift = () => {
       setHeaderToken(token);
       store.dispatch(signInSuccess({ token: token, username: decoded.username }));
       store.dispatch(requestForGetUserData());
-      history.push('/dashboard');
+      history.push('dashboard');
     }
   }
 };
 
-render(<Root store={store} history={history} persistor={persistor} onBeforeLift={onBeforeLift} />, root);
+render(
+  <Root store={store} history={history} persistor={persistor} onBeforeLift={onBeforeLift} />,
+  root
+);

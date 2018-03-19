@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { toRem } from 'utils/styles/general';
 
-export const HeaderForList = styled.p`
+export const HeaderForList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
