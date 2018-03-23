@@ -8,10 +8,31 @@ import { HeaderForList, StyledUl, IconList, ItemInList } from 'common/components
 const { Content } = Layout;
 
 class ContentPage extends React.Component {
+  state = {
+    selectedEditableItem: null,
+    isEditing: false
+  };
+  handleDelete = (id, type) => {
+    if (type === 'shopping') {
+      const filterShopping = this.props.shoppingList.filter((item, idx) => idx !== id);
+      console.log(filterShopping);
+    }
+    if (type === 'categories') {
+      const filterCategories = this.props.categories.filter((item, idx) => idx !== id);
+      console.log(filterCategories);
+    }
+  };
+  handleEditing = id => {
+    console.log('editing', id);
+    this.setState({
+      selectedEditableItem: id,
+      isEditing: true
+    });
+  };
   render () {
     const { categories, shoppingList } = this.props;
 
-    const renderShoppingList = shoppingList.map((item, idx) => (
+    const renderShopping = shoppingList.map((item, idx) => (
       <ItemInList key={idx}>
         <span>
           <p>Name: {item.label}</p>
@@ -19,9 +40,13 @@ class ContentPage extends React.Component {
           <p>Price: ${item.price}</p>
         </span>
         <IconList direction="column" size="20">
-          <Icon type="edit" />
-          <Icon type="copy" />
-          <Icon type="close-circle" />
+          <Icon style={{ cursor: 'pointer' }} onClick={() => this.handleEditing(idx)} type="edit" />
+          <Icon style={{ cursor: 'pointer' }} type="copy" />
+          <Icon
+            style={{ cursor: 'pointer' }}
+            onClick={() => this.handleDelete(idx, 'shopping')}
+            type="close-circle"
+          />
         </IconList>
       </ItemInList>
     ));
@@ -30,9 +55,13 @@ class ContentPage extends React.Component {
       <ItemInList key={idx}>
         <span> Name: {item} </span>
         <IconList direction="row" size="20">
-          <Icon type="edit" />
-          <Icon type="copy" />
-          <Icon type="close-circle" />
+          <Icon style={{ cursor: 'pointer' }} type="edit" />
+          <Icon style={{ cursor: 'pointer' }} type="copy" />
+          <Icon
+            style={{ cursor: 'pointer' }}
+            onClick={() => this.handleDelete(idx, 'categories')}
+            type="close-circle"
+          />
         </IconList>
       </ItemInList>
     ));
@@ -52,7 +81,7 @@ class ContentPage extends React.Component {
               </span>
               <Icon type="plus-circle" />
             </HeaderForList>
-            <StyledUl> {renderShoppingList}</StyledUl>
+            <StyledUl> {renderShopping}</StyledUl>
           </Col>
           <Col span={12}>
             <HeaderForList>
