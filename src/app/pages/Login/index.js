@@ -110,8 +110,15 @@ Login.propTypes = {
   signUp: PropTypes.func
 };
 
-function mapStateToProps (state) {
+const mapStateToProps = state => {
   return { isAuthenticated: state.login.isAuthenticated };
-}
-
-export default connect(mapStateToProps, { signIn, signUp })(Login);
+};
+const mapDispatchToProps = dispatch => ({
+  signIn (data) {
+    dispatch(signIn['INIT'](data));
+  },
+  sigUp (data) {
+    dispatch(signUp['INIT'](data));
+  }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

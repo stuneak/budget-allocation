@@ -1,25 +1,8 @@
-import { createAction } from 'redux-act';
-
+import { asyncAction } from 'utils/helpers';
 const NS = '@@LOGIN/';
 
-export const signIn = createAction(`${NS}signIn`, ({ username, password }) => ({
-  username,
-  password
-}));
-export const signInSuccess = createAction(`${NS}signInSuccess`, ({ username, token }) => ({
-  username,
-  token
-}));
-export const signInFailure = createAction(`${NS}signInFailure`);
+export const signIn = asyncAction(`${NS}signIn`);
 
-export const signUp = createAction(`${NS}signUp`, ({ username, password }) => ({
-  username,
-  password
-}));
-export const signUpSuccess = createAction(`${NS}signUpSuccess`, ({ username, token }) => ({
-  username,
-  token
-}));
-export const signUpFailure = createAction(`${NS}signUpFailure`);
+export const signUp = asyncAction(`${NS}signUp`);
 
-export const logout = createAction(`${NS}logout`);
+export const logout = asyncAction(`${NS}logout`);

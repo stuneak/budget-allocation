@@ -79,11 +79,9 @@ ContentPage.propTypes = {
   shoppingList: PropTypes.array
 };
 
-function mapStateToProps (state) {
-  return {
-    shoppingList: makeGetShoppingList(state),
-    categories: makeGetCategories(state)
-  };
-}
+const mapStateToProps = state => ({
+  shoppingList: makeGetShoppingList(state),
+  categories: makeGetCategories(state)
+});
 
 export default connect(mapStateToProps, null)(ContentPage);

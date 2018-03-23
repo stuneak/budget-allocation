@@ -1,11 +1,7 @@
-import { createAction } from 'redux-act';
+import { asyncAction } from 'utils/helpers';
 
 const NS = '@@Dashboard/';
 
-export const requestForGetUserData = createAction(`${NS}requestForGetUserData`);
+export const getUserData = asyncAction(`${NS}getUserData`);
 
-export const saveUserData = createAction(`${NS}saveUserData`, ({ budget, shoppingList, categories }) => ({
-  budget,
-  shoppingList,
-  categories
-}));
+export const changeBudget = asyncAction(`${NS}changeBudget`);

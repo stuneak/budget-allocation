@@ -4,8 +4,8 @@ The project is missing a configuration file database `./server/config.js`:
 
 ```js
 const config = {
-  secret: "yousecretkey",
-  url: "mongodb://*" // your database
+  secret: 'yousecretkey',
+  url: 'mongodb://*', // your database
 };
 
 export default config;
@@ -26,7 +26,7 @@ To build app: `npm run build`
 ### Features
 
 * [x] Registration, authorization, setting a budget
-* [ ] Introduction shopping list
+* [x] Introduction shopping list
 * [ ] Purchases can be allocated to different categories
 * [ ] Chart of expenditures (for the week, month, year)
 * [ ] The application warns if the account remains 10 percent of the budget
@@ -35,6 +35,6 @@ To build app: `npm run build`
 
 ### The tools used in the development
 
-* webpack: 4.1.1
+* webpack: 4.2.0
 * react: 16.2.0 (store: redux, side effects: redux-saga, styles: styled-components, ui: antd)
-* express: 4.16.2 (mongoose, passport)
+* express: 4.16.3 (mongoose, passport)

@@ -1,6 +1,6 @@
 import { takeEvery, all, call, put } from 'redux-saga/effects';
-import { signIn, signInSuccess, signInFailure, signUp, signUpSuccess, signUpFailure } from './actions';
-import { requestForGetUserData } from 'pages/Dashboard/actions';
+import { signIn, signUp } from './actions';
+import { getUserData } from 'pages/Dashboard/actions';
 import { axios, setHeaderToken } from 'api';
 import { message } from 'antd';
 
@@ -13,11 +13,11 @@ function * Authorization ({ payload: { username, password } }) {
   try {
     const response = yield call(axios.post, '/api/signin', userData);
     yield call(setHeaderToken, response.data.token);
-    yield put(requestForGetUserData());
-    yield put(signInSuccess({ token: response.data.token, username: username }));
+    yield put(getUserData['INIT']());
+    yield put(signIn['DONE']({ token: response.data.token, username: username }));
   } catch (error) {
     message.error(error.response.data.message);
-    yield put(signInFailure());
+    yield put(signIn['FAIL']());
   }
 }
 
@@ -30,15 +30,15 @@ function * Registration ({ payload: { username, password } }) {
   try {
     const response = yield call(axios.post, '/api/signup', userData);
 
-    yield put(signUpSuccess({ token: response.data.token, username: username }));
+    yield put(signUp['INIT']({ token: response.data.token, username: username }));
     yield call(setHeaderToken, response.data.token);
-    yield put(requestForGetUserData());
+    yield put(getUserData['INIT']());
   } catch (error) {
     message.error(error.response.data.message);
-    yield put(signUpFailure());
+    yield put(signUp['FAIL']());
   }
 }
 
 export default function * watchLogin () {
-  yield all([takeEvery(signIn, Authorization), takeEvery(signUp, Registration)]);
+  yield all([takeEvery(signIn['INIT'], Authorization), takeEvery(signUp['INIT'], Registration)]);
 }

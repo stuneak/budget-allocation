@@ -5,8 +5,8 @@ import configureStore from 'common/configureStore';
 import Root from './Root';
 import jwtDecode from 'jwt-decode';
 import 'utils/styles/defaultStyle';
-import { signInSuccess } from 'pages/Login/actions';
-import { requestForGetUserData } from 'pages/Dashboard/actions';
+import { signIn } from 'pages/Login/actions';
+import { getUserData } from 'pages/Dashboard/actions';
 import { setHeaderToken } from 'api';
 
 const root = document.createElement('div');
@@ -23,8 +23,8 @@ const onBeforeLift = () => {
     const isTokenNotExpired = decoded.exp < new Date().getTime();
     if (isTokenNotExpired) {
       setHeaderToken(token);
-      store.dispatch(signInSuccess({ token: token, username: decoded.username }));
-      store.dispatch(requestForGetUserData());
+      store.dispatch(signIn['DONE']({ token: token, username: decoded.username }));
+      store.dispatch(getUserData['INIT']());
       history.push('dashboard');
     }
   }
