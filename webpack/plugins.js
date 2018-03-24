@@ -1,24 +1,19 @@
 const webpack = require('webpack');
 const aliases = require('./aliases');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 module.exports = env => {
-  const devPlugins = [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin()
-  ];
+  const devPlugins = [new webpack.HotModuleReplacementPlugin(), new BundleAnalyzerPlugin()];
   const prodPlugins = [
     new webpack.LoaderOptionsPlugin({
       context: aliases.src,
       minimize: true,
       debug: false
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
@@ -46,7 +41,10 @@ module.exports = env => {
         conservativeCollapse: true
       }
     }),
-    new ExtractTextPlugin('styles.css')
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
   ];
   return [...mandatoryplugins, ...(env.development ? devPlugins : prodPlugins)];
 };

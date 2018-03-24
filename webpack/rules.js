@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const aliases = require('./aliases');
 
 const imageWebpackConfig = {
@@ -25,10 +25,7 @@ exports.js = {
 exports.css = env => ({
   test: /\.css$/,
   use: env.production
-    ? ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: ['css-loader']
-    })
+    ? [MiniCssExtractPlugin.loader, 'css-loader']
     : ['style-loader', 'css-loader'],
   include: /node_modules/
 });
